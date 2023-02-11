@@ -13,18 +13,24 @@ public class Main {
             String input = scanner.nextLine();
             int instructionIndex = input.indexOf(" ");
             String instruction = input.substring(0, instructionIndex);
+            String fileName = input.substring(instructionIndex + 1);
             if  (input.equals(exitMode)) {
+                System.out.println(fileLibrary);
                 break;
-            } else if (instruction.equals("add")) {
-                String fileName = input.substring(instructionIndex + 1);
-                fileLibrary.addFile(fileName);
-
-            } else if (instruction.equals("delete")) {
-                String fileName = input.substring(instructionIndex + 1);
-                fileLibrary.deleteFile(fileName);
-            } else if (instruction.equals("send")) {
-                String fileName = input.substring(instructionIndex + 1);
-                fileLibrary.sendFile(fileName);
+            } switch(instruction) {
+                case "add":
+                    fileLibrary.addFile(fileName);
+                    break;
+                case "delete":
+                    fileLibrary.deleteFile(fileName);
+                    break;
+                case "send":
+                    fileLibrary.sendFile(fileName);
+                    break;
+                    case "show":
+                    System.out.println(fileLibrary);
+                default:
+                    System.out.println("Invalid instruction");
             }
         }
     }
